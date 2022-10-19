@@ -6,7 +6,7 @@ const jimp = require("jimp");
 ///@param: imageToLoad: name of the image to be loaded
 ///@param: startingNameNumber: starting number of the sub-image name
 ///@param: EndingNameNumber: ending number of the sub-image name
-///return: directly write to current directory
+///@return: directly write to current directory
 async function imageCutter(noOfSubImages = 13, imageToLoad = "img.jpg", startingNameNumber = 1, EndingNameNumber = 13) {
 	//throw error if counting is not correct
 	//minus 1 in noOfSubimages because we are also subtracting startingNameNumber e.g.
