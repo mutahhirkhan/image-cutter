@@ -1,7 +1,7 @@
 //import jimp
 const jimp = require("jimp");
 
-///create new sub-images of the original image
+///create new sub-images of the original image, this script only cut vertically, where noOfSubImages is the noOfRows 
 ///@param: noOfSubImages: number of sub-images to be created
 ///@param: imageToLoad: name of the image to be loaded
 ///@param: startingNameNumber: starting number of the sub-image name
