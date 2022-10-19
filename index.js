@@ -1,36 +1,41 @@
 //import jimp
 const jimp = require('jimp');
-//load jimp
-async function fn() {
 
+async function imageCutter(noOfSubImages = 13) {
+    //load image to cut
     let image1 = await jimp.read('img.jpg');
-    let image2 = image1.clone();
-    let image3 = image1.clone();
-    let image4 = image1.clone();
+    let imageArr = [];
+    //create array of images clones
+    for (let i = 0; i < noOfSubImages; i++) {
+        imageArr.push(image1.clone());
+    }
 
-
-    console.log('starting postion',parseInt(((image1.getHeight()-1)/4)*1))
-    console.log('starting postion',parseInt(((image1.getHeight()-1)/4)*2))
-    console.log('starting postion',parseInt(((image1.getHeight()-1)/4)*3))
-    console.log('starting postion',parseInt(((image1.getHeight()-1)/4)*4))
-    console.log("height:", image1.getHeight());
-    
-    let singleImageHeight = parseInt((image1.getHeight()-1)/4);
+    //get height and width of output single image, 1 pixel is subtracted due to 0 -> 1 indexing
+    //single image height will be total height divided by number of sub-images
+    let singleImageHeight = parseInt((image1.getHeight())/noOfSubImages);
     let singleImageWidth = image1.getWidth();
-    //crop these images into 4 equale parts
-    
-    image1.crop(0, 0, parseInt(singleImageWidth), singleImageHeight);
-    image2.crop(0, parseInt(((image2.getHeight()-1)/4)*1), singleImageWidth, singleImageHeight);
-    image3.crop(0, parseInt(((image3.getHeight()-1)/4)*2), singleImageWidth, singleImageHeight);
-    image4.crop(0, parseInt(((image4.getHeight()-1)/4)*3),singleImageWidth, singleImageHeight);
-        
-    
-    image1.write('img1c.jpg');
-    image2.write('img2c.jpg');
-    image3.write('img3c.jpg');
-    image4.write('img4c.jpg');
-}
-(async () => {
 
-    await fn()
+    //crop these images into defined equale parts
+    ///@params: x, y, width, height
+    ///@param x: starting x-axis position of the crop
+    ///@param y: starting y-axis position of the crop
+    ///@param width: width of the cropped image
+    ///@param height: height of the cropped image
+    imageArr.forEach((img, index) => {
+        img.crop(0, parseInt(singleImageHeight*index), parseInt(singleImageWidth), singleImageHeight);
+    })
+
+    //write the cropped images to current directory
+    imageArr.forEach((img, index) => {
+        img.write(`img${index+1}-cropped.jpg`)
+    })
+}
+
+(async () => {
+    try {
+        await imageCutter(13)
+        console.log("DONE");
+    } catch (error) {
+        console.log(error)
+    }
 })()
