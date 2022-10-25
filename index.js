@@ -1,7 +1,8 @@
 //import jimp
 const jimp = require("jimp");
+const imagesToPdf = require("images-to-pdf")
 
-///create new sub-images of the original image, this script only cut vertically, where noOfSubImages is the noOfRows 
+///create new sub-images of the original image, this script only cut vertically, where noOfSubImages is the noOfRows
 ///@param: noOfSubImages: number of sub-images to be created
 ///@param: imageToLoad: name of the image to be loaded
 ///@param: startingNameNumber: starting number of the sub-image name
@@ -16,6 +17,8 @@ async function imageCutter(noOfSubImages = 13, imageToLoad = "img.jpg", starting
 
 	//load image to cut
 	let image1 = await jimp.read(imageToLoad);
+	//convert image to pdf
+	image1.write("imgs.jpg");
 
 	let imageArr = [];
 	//create array of images clones till noOfSubImages times
@@ -39,12 +42,17 @@ async function imageCutter(noOfSubImages = 13, imageToLoad = "img.jpg", starting
 	});
 
 	//write the cropped images to current directory
-	imageArr.forEach((img, index) => img.write(`img${startingNameNumber + index}.jpg`));
+	imageArr.forEach((img, index) => img.write(`output/img${startingNameNumber + index}.jpg`));
 }
 
 (async () => {
 	try {
+		//cut images
 		await imageCutter(14, "img.jpg", 51, 64);
+		
+		//convert images to combined PDF
+		await imagesToPdf(["output/img51.jpg", "output/img52.jpg", "output/img53.jpg","output/img54.jpg","output/img55.jpg","output/img56.jpg","output/img57.jpg","output/img58.jpg","output/img59.jpg","output/img60.jpg","output/img61.jpg","output/img62.jpg","output/img63.jpg","output/img64.jpg"], "combined.pdf")
+
 		console.log("DONE");
 	} catch (error) {
 		console.log(error);

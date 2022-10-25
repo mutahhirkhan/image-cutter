@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "easy-pdf-merge": "^0.2.6",
+    "images-to-pdf": "^1.0.3",
     "jimp": "^0.16.2"
   }
 }
