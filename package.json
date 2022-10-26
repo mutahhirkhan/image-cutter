@@ -10,7 +10,10 @@
   "license": "ISC",
   "dependencies": {
     "easy-pdf-merge": "^0.2.6",
+    "fs": "^0.0.1-security",
     "images-to-pdf": "^1.0.3",
-    "jimp": "^0.16.2"
+    "jimp": "^0.16.2",
+    "pdf-actions": "^1.0.38",
+    "pdfkit": "^0.13.0"
   }
 }
