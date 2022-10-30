@@ -1,19 +1,35 @@
 {
-  "name": "jimp",
+  "name": "image-cutter",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mutahhirkhan/image-cutter.git"
+  },
+  "keywords": [
+    "image-processing",
+    "pdf-actions",
+    "nodejs",
+    "editor",
+    "pdf",
+    "pdf-editor",
+    "pdf-editor-nodejs"
+  ],
+  "author": "Mutahhir Khan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mutahhirkhan/image-cutter/issues"
+  },
+  "homepage": "https://github.com/mutahhirkhan/image-cutter#readme",
   "dependencies": {
     "easy-pdf-merge": "^0.2.6",
     "fs": "^0.0.1-security",
     "images-to-pdf": "^1.0.3",
     "jimp": "^0.16.2",
-    "pdf-actions": "^1.0.38",
-    "pdfkit": "^0.13.0"
+    "pdf-actions": "^1.2.2"
   }
 }
